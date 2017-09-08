@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/dannytaylor/dgnby/master/release/img_cart.png)
+![](https://raw.githubusercontent.com/dannytaylor/dgnby/master/release/cart.png)
 ## dog 'n boy 
 [on itch](https://xhg.itch.io/dgnby)  
 [on tic](http://tic.computer/play?cart=176)
