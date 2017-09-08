@@ -6,8 +6,10 @@ local wall,plat
 local c,p,d,f,m
 local b,l
 local Ani,Player,Boy,Dog,Cam,Map,Action,Button,Lever
+stic=0 -- start tic
 
-DEBUG=true
+DEBUG=false
+SCENE=1
 
 init=->
 	wall={}
@@ -163,7 +165,7 @@ class Lever extends Action
 
 	update:=>
 		if @cc p.x+8,p.y+8
-			if btnp(4) and p.vy==0 and p.lock<0
+			if btnp(5) and p.vy==0 and p.lock<0
 				p.vx=0
 				p.vy=0
 				p.lock=20
@@ -263,7 +265,7 @@ class Boy extends Player
 			if @vy==0 and btnp(0)
 				@vy=-2.8
 				sfx 2,49,-1,0,5
-			if  btnp(1) and @vy==0
+			if  btnp(4) and @vy==0
 				@lock=30
 				@vx=0
 				d.stay=not d.stay
@@ -363,30 +365,41 @@ class Map
 -------------------------
 init!
 update=->
-	c\update!
-	p\update!
-	d\update!
+	if SCENE==1
+		stic+=1
+		if stic>=80 then stic=0
+		if btn 4
+			SCENE+=1
+			sfx 5,48,-1,0,5
+	else
+		c\update!
+		p\update!
+		d\update!
 
-	for bt in *b
-		bt\update!
-	for lv in *l
-		lv\update!
+		for bt in *b
+			bt\update!
+		for lv in *l
+			lv\update!
 
 
 draw=->
 	cls 0
-	m\draw!
+	if SCENE==1
+		map(210, 16, 30, 17,0,0,0,1)
+		if stic<50 then print('\'Z\' TO START', 94,120,6)
+	else
+		m\draw!
 
-	for bt in *b
-		bt\draw!
-	for lv in *l
-		lv\draw!
+		for bt in *b
+			bt\draw!
+		for lv in *l
+			lv\draw!
 
-	p\draw!
-	d\draw!
+		p\draw!
+		d\draw!
 
 
-	dbg!
+		dbg!
 -------------------------
 
 
