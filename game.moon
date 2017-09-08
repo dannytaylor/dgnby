@@ -1,4 +1,4 @@
--- title: boy and dog
+-- title: dog 'n boy
 -- author: @xhiggy
 -- script: moon
 
